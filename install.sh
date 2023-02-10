@@ -2,7 +2,7 @@
 
 # installation script for CUBA
 
-set -euxo
+set -eux
 
 install_module(){
     if [ -n "${VIRTUAL_ENV-}" ]
@@ -20,9 +20,11 @@ install_module(){
             install_path="/usr"
         fi
     fi
-    autoreconf --install && ./configure --prefix="${install_path}" CFLAGS=-fPIC && make install
+    autoreconf --install
+    ./configure --prefix="${install_path}" CFLAGS=-fPIC
+    make install
 }
 
 install_module
 
-set +euxo
+set +eux
